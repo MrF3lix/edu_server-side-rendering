@@ -1,12 +1,21 @@
-import thunk from 'redux-thunk'
-import global from './reducers/global.jsx'
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import {
+    createStore,
+    combineReducers,
+    compose,
+    applyMiddleware,
+} from 'redux'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const middleware = applyMiddleware(thunk)
+import ReduxThunk from 'redux-thunk'
+import global from './reducers/global'
+
+const createStoreWithMiddleware = compose(applyMiddleware(
+    ReduxThunk,
+))(createStore)
 
 const rootReducer = combineReducers({
     global
 })
 
-export default createStore(rootReducer, composeEnhancers(middleware))
+export default function configureStore(initialState = {}) {
+    return createStoreWithMiddleware(rootReducer, initialState)
+}

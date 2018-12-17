@@ -1,12 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import Loadable from 'react-loadable'
+import { Provider as ReduxProvider } from 'react-redux'
 import App from './components/app'
-import Store from './store'
+import configureStore from '../src/store'
 
-ReactDOM.render(
-    <Provider store={Store}>
+const Store = configureStore(window.REDUX_STATE || {})
+
+const AppBundle = (
+    <ReduxProvider store={Store}>
         <App />
-    </Provider>,
-    document.getElementById('root')
+    </ReduxProvider>
 )
+
+window.onload = () => {
+    Loadable.preloadReady().then(() => {
+        ReactDOM.hydrate(
+            AppBundle,
+            document.getElementById('root')
+        )
+    })
+}

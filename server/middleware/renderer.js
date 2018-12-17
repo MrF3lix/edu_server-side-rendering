@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import { Provider as ReduxProvider } from 'react-redux'
 import path from 'path'
 import fs from 'fs'
 
 import App from '../../src/components/app'
 import data from '../../data/state.json'
 
-export default (req, res, next) => {
+
+export default store => (req, res, next) => {
     const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html')
 
     fs.readFile(filePath, 'utf8', (err, htmlData) => {
@@ -19,8 +21,15 @@ export default (req, res, next) => {
             return { property: key, content: data.global.meta[key] }
         })
 
-        const html = ReactDOMServer.renderToString(<App />)
+        const html = ReactDOMServer.renderToString(
+            <ReduxProvider store={store}>
+                <App />
+            </ReduxProvider>
+        )
 
+
+        const reduxState = JSON.stringify(store.getState())
+        
         return res.send(
             htmlData.replace(
                 '<div id="root"></div>',
@@ -41,6 +50,7 @@ export default (req, res, next) => {
                 </body>
                 `
             )
+            .replace('"__SERVER_REDUX_STATE__"', reduxState)
         )
     })
 }
