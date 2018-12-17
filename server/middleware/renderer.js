@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import path from 'path'
 import fs from 'fs'
 
-import App from '../../src/index'
+import App from '../../src/components/app'
 
 export default (req, res, next) => {
     const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html')
@@ -13,6 +13,7 @@ export default (req, res, next) => {
             console.error('err', err)
             return res.status(404).end()
         }
+
         const html = ReactDOMServer.renderToString(<App />)
 
         return res.send(

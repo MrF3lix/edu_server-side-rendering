@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 const App = () => (
     <div>
@@ -7,8 +7,10 @@ const App = () => (
     </div>
 )
 
-const mapStateToProps = state => ({
-    global: state.global
-})
+export default App
 
-export default connect(mapStateToProps, null)(App)
+// const mapStateToProps = state => ({
+//     global: state.global
+// })
+
+// export default connect(mapStateToProps, null)(App)

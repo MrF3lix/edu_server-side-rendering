@@ -1,15 +1,14 @@
 
 import express from 'express'
 import path from 'path'
-// import serverRenderer from './middleware/renderer'
+import serverRenderer from './middleware/renderer'
 
 const server = express()
+const router = express.Router()
 const PORT = process.env.PORT || 8080
 
-server.use(express.static(path.join(__dirname, '../build')))
+router.use('*', serverRenderer)
+router.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
 
-server.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build', 'index.html'))
-})
-
+server.use(router)
 server.listen(PORT, () => { console.log(`Website runs at http://localhost:${PORT}/`) })
