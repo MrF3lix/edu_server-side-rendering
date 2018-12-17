@@ -1,0 +1,10 @@
+{
+    "global": {
+        "title": "Page Title",
+        "meta": {
+            "og:title": "Fatboy",
+            "og:description": "Description",
+            "og:url": "https://fatboy.nl"
+        }
+    }
+}
