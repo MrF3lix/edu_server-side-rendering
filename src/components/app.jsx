@@ -7,10 +7,11 @@ const App = () => (
     </div>
 )
 
-export default App
-
 // const mapStateToProps = state => ({
 //     global: state.global
 // })
 
 // export default connect(mapStateToProps, null)(App)
+
+
+export default App

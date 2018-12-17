@@ -2,9 +2,47 @@
     "global": {
         "title": "Page Title",
         "meta": {
-            "og:title": "Fatboy",
-            "og:description": "Description",
-            "og:url": "https://fatboy.nl"
+            "og:title": "Page Title",
+            "og:description": "Page Description",
+            "og:url": "https://linktopage.com"
+        },
+        "sd": {
+            "@context": "http://schema.org",
+            "@type": "Restaurant",
+            "image": [
+                "https://example.com/photos/1x1/photo.jpg"
+            ],
+            "@id": "https://cafe-saaro.nl",
+            "name": "Café Saaro",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Czaar Peterstraat 109",
+                "addressLocality": "Amsterdam",
+                "postalCode": "1018PE",
+                "addressCountry": "NL"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 52.370228,
+                "longitude": 4.929727
+            },
+            "url": "https://cafe-saaro.nl",
+            "telephone": "+12122459600",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
+                    ],
+                    "opens": "09:30",
+                    "closes": "18:00"
+                }
+            ],
+            "acceptsReservations": "False"
         }
     }
 }
